@@ -10,16 +10,6 @@ import org.hibernate.SessionFactory;
 
 public class PilotDAO implements PilotDAOInterface{
 
-	public Pilot selectById(Long id) {
-		SessionFactory sessionFactory = HibernateSession.getSessionFactory();
-	    Session session = sessionFactory.openSession();
-	 
-	    Pilot pilot = (Pilot) session.get(Pilot.class, id);
-	    
-	    session.close();
-	    return pilot;
-	}
-
 	public List<Pilot> selectAll() {
 		SessionFactory sessionFactory = HibernateSession.getSessionFactory();
 		Session session = sessionFactory.openSession();
@@ -40,27 +30,5 @@ public class PilotDAO implements PilotDAOInterface{
 	    session.close();
 	}
 
-	public void update(Pilot pilot) {
-		SessionFactory sessionFactory = HibernateSession.getSessionFactory();
-	    Session session = sessionFactory.openSession();	 
-	    session.beginTransaction();
-	 
-	    session.merge(pilot);
-	 
-	    session.getTransaction().commit();
-	    session.close();
-	}
-
-	public void delete(Pilot pilot) {
-		SessionFactory sessionFactory = HibernateSession.getSessionFactory();
-	    Session session = sessionFactory.openSession();	    
-	    session.beginTransaction();
-	    
-	    session.delete(pilot);
-	 
-	    session.getTransaction().commit();
-	    session.close();
-		
-	}
 
 }
